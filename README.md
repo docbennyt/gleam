@@ -1,5 +1,3 @@
-README.md file for the Gamified Learning and Exam AI Module (GLEAM) that reflects your project context, design philosophy, and usage:
-
 # Gamified Learning and Exam AI Module (GLEAM)
 
 🎓 **GLEAM** is an intelligent, adaptive, and modular Python backend engine designed to dynamically generates personalized gamified quizzes, grade responses, and provide a rich learning experience. Perfect for integration into educational web or mobile applications, GLEAM leverages open-source AI to help users learn better and smarter.
@@ -153,6 +151,6 @@ Open-source means community, so feel free to submit issues or pull requests.
 
 📜 License
 GLEAM is released under the MIT License — free and open for everyone.
-Built with ❤️ for education to greater heights.
+Built with ❤️ by Dr BennyT for education to greater heights.
 
 Thank you for exploring GLEAM — Your backend companion for gamified learning and exam success! 🎉
