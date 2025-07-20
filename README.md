@@ -2,8 +2,6 @@
 
 🎓 **GLEAM** is an intelligent, adaptive, and modular Python backend engine designed to dynamically generates personalized gamified quizzes, grade responses, and provide a rich learning experience. Perfect for integration into educational web or mobile applications, GLEAM leverages open-source AI to help users learn better and smarter.
 
----
-
 ## 🌟 Project Overview
 
 GLEAM isn’t just another quiz generator — it embodies IMAT:
@@ -15,14 +13,13 @@ GLEAM isn’t just another quiz generator — it embodies IMAT:
 
 This makes GLEAM a powerful backend for gamified learning platforms, exam prep apps, and educational tools.
 
----
-
 ## 🧩 Core Architecture
 
-gleam/ 
+gleam/
 ├── init.py
 ├── quiz_generator.py # AI-driven question generation
-├── syllabus_parser.py # Extracts content from syllabi & past papers ├── difficulty_manager.py # Adaptive difficulty algorithm
+├── syllabus_parser.py # Extracts content from syllabi & past papers
+├── difficulty_manager.py # Adaptive difficulty algorithm
 ├── feedback_engine.py # Intelligent feedback & explanation
 ├── storage_handler.py # Session & progress persistence 
 ├── utils.py #Helper functions 
@@ -33,21 +30,21 @@ gleam/
 ### 1. Quiz Generator
 
 Generates multiple-choice questions on any topic and difficulty using an AI language model.
-
+```
 from transformers import pipeline
 
 class QuizGenerator:
     def __init__(self):
         self.generator = pipeline("text-generation", model="gpt2")
-
+    
     def generate_question(self, topic, difficulty="medium"):
         prompt = f"Generate a {difficulty} level multiple-choice question on {topic} with answer and explanation:"
         result = self.generator(prompt, max_length=150, num_return_sequences=1)[0]['generated_text']
         return result
-
+```
 2. Syllabus Parser
 Extracts text content from PDFs of syllabi and past exam papers.
-
+```
 import PyPDF2
 
 class SyllabusParser:
@@ -55,10 +52,10 @@ class SyllabusParser:
         with open(pdf_path, 'rb') as f:
             reader = PyPDF2.PdfReader(f)
             return " ".join([page.extract_text() for page in reader.pages])
-
+```
 3. Difficulty Manager
 Adjusts question difficulty based on user’s current score.
-
+```
 class DifficultyManager:
     def get_next_level(self, current_score):
         if current_score < 3:
@@ -67,20 +64,20 @@ class DifficultyManager:
             return "medium"
         else:
             return "hard"
-
+```
 4. Feedback Engine
 Delivers contextual explanations after answers are submitted.
-
+```
 class FeedbackEngine:
     def explain_answer(self, question, user_choice, correct_choice):
         if user_choice == correct_choice:
             return "Correct! You understood the concept well."
         else:
             return f"Incorrect. The correct answer was {correct_choice} because..."
-
+```
 5. Storage Handler
 Persists user progress and scores locally in a SQLite database.
-
+```
 import sqlite3
 
 class StorageHandler:
@@ -108,10 +105,10 @@ class StorageHandler:
         c = self.conn.cursor()
         c.execute("SELECT score, streak FROM sessions WHERE user_id=?", (user_id,))
         return c.fetchone()
-
+```
 🛠️ Quick API Integration Example
 Use GLEAM modules inside a Flask backend to serve quizzes dynamically:
-
+```
 from flask import Flask, request, jsonify
 from gleam import QuizGenerator, DifficultyManager, StorageHandler
 
@@ -137,7 +134,7 @@ def generate_quiz():
 
 if __name__ == "__main__":
     app.run(port=5000)
-
+```
 
 🌱 Roadmap and Next Steps
 🧹 Refactor modules for stricter single responsibility and cleaner codebase.
